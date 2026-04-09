@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center min-vh-100 align-items-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <i class="fas fa-utensils fa-3x text-primary"></i>
+                    <h2 class="mt-2">Welcome Back</h2>
+                    <p class="text-muted">Sign in to your RMS account</p>
+                </div>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Email Address / Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="remember">
+                        <label class="form-check-label" for="remember">Remember me</label>
+                        <a href="#" class="float-end text-decoration-none">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </form>
+                
+                <hr class="my-4">
+                
+                <div class="text-center">
+                    <h6 class="text-muted mb-3">Quick Login Options</h6>
+                    <div class="row g-2">
+                        <div class="col-12">
+                            <button class="btn btn-outline-secondary w-100 btn-sm" onclick="fillAdmin()">
+                                <i class="fas fa-user-shield"></i> Demo Admin
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-outline-info w-100 btn-sm" onclick="fillManager()">
+                                <i class="fas fa-user-tie"></i> Demo Manager
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                <i class="fas fa-chart-line"></i> Real-time Analytics | 
+                <i class="fas fa-boxes"></i> Inventory Management | 
+                <i class="fas fa-chart-bar"></i> Financial Reports
+            </small>
+        </div>
+    </div>
+</div>
+
+<script>
+function fillAdmin() {
+    document.querySelector('input[name="username"]').value = 'admin';
+    document.querySelector('input[name="password"]').value = 'admin123';
+}
+
+function fillManager() {
+    document.querySelector('input[name="username"]').value = 'manager';
+    document.querySelector('input[name="password"]').value = 'manager123';
+}
+</script>
+{% endblock %}
